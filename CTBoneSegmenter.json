@@ -5,7 +5,7 @@
   "organ": "Chest",
   "modality": "CT",
   "train_test_data_details": "The model is trained on CT data reconstructed with a variety of kernels with and without contrast agent added.",
-  "briefdescription": "Bone segmentation from chest CT scans",
+  "briefdescription": "Bone segmentation from chest CT scans using a modified UNET algorithm",
   "detaileddescription": "",
   "version": "0.1",
   "docker":
@@ -23,7 +23,7 @@
   "test":
     {
       "number of subjects": 30,
-      "Accuracy": 0.567,
+      "Accuracy": 0.772,
       "Metric": "Dice Similarity"
     }
   ,
