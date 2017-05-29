@@ -1,7 +1,7 @@
 import SimpleITK as sitk
 import numpy as np
 
-from utils import reshape_volume, correct_exposure
+from prostatesegmenter.utils import reshape_volume
 
 
 class Segmenter(object):
@@ -15,15 +15,13 @@ class Segmenter(object):
         predicted_label[predicted_label <= self.threshold] = 0
         return predicted_label
 
-    def segment_prostate_volume(self, input_volume_path, output_mask_path, rows, cols):
+    def segment_bone_volume(self, input_volume_path, output_mask_path, rows, cols):
         vol = sitk.ReadImage(input_volume_path)
         vol = sitk.Cast(sitk.RescaleIntensity(vol), sitk.sitkUInt8)
         vol_nda = sitk.GetArrayFromImage(vol)
         original_shape = vol_nda.shape
         vol_nda = reshape_volume(vol_nda, rows, cols)
         vol_nda = np.expand_dims(vol_nda, axis=1)
-        for i in range(len(vol_nda)):
-            vol_nda[i] = correct_exposure(vol_nda[i])
         label_nda = self.__predict(vol_nda)
         label_nda = label_nda[:, 0, :, :]
         # TODO: Check the indices for shape!

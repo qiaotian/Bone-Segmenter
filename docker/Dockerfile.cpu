@@ -1,7 +1,7 @@
 FROM ubuntu:14.04
 # FROM nvidia/cuda:7.5-cudnn5-devel
 
-MAINTAINER Alireza Mehrtash <mehrtash@bwh.harvard.edu>
+MAINTAINER Kevin Mader <kmader@4quant.com>
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 ENV CONDA_DIR /opt/conda
@@ -39,19 +39,18 @@ RUN pip install --upgrade pip && \
 RUN mkdir /home/deepinfer/.keras && \
     echo { '"image_dim_ordering"': '"th"', '"epsilon"': 1e-07, '"floatx"': '"float32"', '"backend"': '"theano"'}>/home/deepinfer/.keras/keras.json
 
-RUN echo 'hi'
 
 RUN mkdir -p /home/deepinfer/github && \
     mkdir /home/deepinfer/data && \
     cd /home/deepinfer/github/ && \
-    git clone https://github.com/mehrtash/prostate-segmenter
+    git clone https://github.com/4Quant/bone-segmenter
 
 # Running test.sh will download the weights and keep them in docker
-RUN cd /home/deepinfer/github/prostate-segmenter && \
+RUN cd /home/deepinfer/github/bone-segmenter && \
     bash test.sh
 
 EXPOSE 8888
 
 WORKDIR "/home/deepinfer"
 # CMD ["/bin/bash"]
-ENTRYPOINT ["python","/home/deepinfer/github/prostate-segmenter/fit.py"]
+ENTRYPOINT ["python","/home/deepinfer/github/bone-segmenter/fit.py"]

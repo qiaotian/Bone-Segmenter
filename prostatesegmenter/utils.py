@@ -3,7 +3,10 @@ import os
 import sys
 
 import numpy as np
-from progressbar import ProgressBar
+try:
+    from progressbar import ProgressBar
+except ImportError:
+    pass
 
 from six.moves.urllib.error import HTTPError, URLError
 from six.moves.urllib.request import urlretrieve

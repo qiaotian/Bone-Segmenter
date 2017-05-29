@@ -6,7 +6,6 @@ SEGMENTER_PATH = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'pros
 print(SEGMENTER_PATH)
 sys.path.insert(1, SEGMENTER_PATH)
 
-from prostatesegmenter.data import ProstateData
 from prostatesegmenter.model import CNNModel
 from prostatesegmenter.nets import unet1
 from prostatesegmenter.segmenter import Segmenter
@@ -32,7 +31,6 @@ def main(argv):
         print('usage: fit.py -InputVolume <InputVolumePath> -OutputLabel <OutputLabelPath>')
         sys.exit()
     if os.path.isfile(InputVolume) and os.path.isdir(os.path.dirname(OutputLabel)):
-        ds = ProstateData()
         print("Making the model.")
         model = unet1.model(weights=True, summary=False)
         cnn = CNNModel(data_streamer=ds, model=model)
