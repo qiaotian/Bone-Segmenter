@@ -4,11 +4,17 @@ A modification of the Prostate Segmenter library using our bone segmentation rou
 
 ## Slicer Integration
 
+- [Video Demo](https://www.youtube.com/watch?v=-zHIUqm7Uwk&feature=youtu.be) of Bone Segmentation
+
 Using the DeepInfer plugin the image can be called interactively on a image loaded in Slicer. Here we show the results using the Chest CT image from the Sample Data
 
 ![Slicer](figures/BoneSegGui.png)
 
-- [Video Demo](https://www.youtube.com/watch?v=-zHIUqm7Uwk&feature=youtu.be) of Bone Segmentation
+Here is then a 3D rendering of the segmented bones
+
+![3D Rendering](figures/BoneSeg3D.png)
+
+
 
 # Docker Image
 
