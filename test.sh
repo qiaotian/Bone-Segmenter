@@ -1,2 +1,2 @@
 #!/bin/bash
-python fit.py --InputVolume prostatesegmenter/data/test/Case1-t2ax-intraop.nrrd --OutputLabel prostatesegmenter/data/test/Case1-t2ax-intraop_label.nrrd
+python fit.py --InputVolume CTChest.nrrd --OutputLabel test_out.nrrd

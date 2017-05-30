@@ -1,7 +1,7 @@
 import SimpleITK as sitk
 import numpy as np
 
-from prostatesegmenter.utils import reshape_volume
+from boneseg.utils import reshape_volume
 
 
 class Segmenter(object):
@@ -11,13 +11,10 @@ class Segmenter(object):
 
     def __predict(self, vol_nda):
         predicted_label = self.model.predict_test(input_test_slices_arr=vol_nda)
-        predicted_label[predicted_label > self.threshold] = 1
-        predicted_label[predicted_label <= self.threshold] = 0
         return predicted_label
 
     def segment_bone_volume(self, input_volume_path, output_mask_path, rows, cols):
         vol = sitk.ReadImage(input_volume_path)
-        vol = sitk.Cast(sitk.RescaleIntensity(vol), sitk.sitkUInt8)
         vol_nda = sitk.GetArrayFromImage(vol)
         original_shape = vol_nda.shape
         vol_nda = reshape_volume(vol_nda, rows, cols)
@@ -25,8 +22,9 @@ class Segmenter(object):
         label_nda = self.__predict(vol_nda)
         label_nda = label_nda[:, 0, :, :]
         # TODO: Check the indices for shape!
-        label_nda = reshape_volume(label_nda, original_shape[1], original_shape[2])
-        label = sitk.GetImageFromArray(label_nda)
+        # since the zoom function interpolates, threshold it again
+        label_nda = reshape_volume(label_nda, original_shape[1], original_shape[2])>0.5
+        label = sitk.GetImageFromArray(label_nda.astype(np.uint8))
         label.CopyInformation(vol)
         writer = sitk.ImageFileWriter()
         writer.Execute(label, output_mask_path, True)

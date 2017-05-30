@@ -17,9 +17,13 @@ docker build -t bone-segmenter-cpu -f Dockerfile.cpu .
 
 ##### Running the docker
 ```
-docker run -t -v [Absolute PATH to the Project Folder]/Prostate-Segmenter/prostatesegmenter/data/test/:/home/deepinfer/data deepinfer/prostate-segmenter-cpu --InputVolume /home/deepinfer/data/input.nrrd --OutputLabel /home/deepinfer/data/label_predicted_test.nrrd
+docker run -t -v [Absolute PATH to the Project Folder]/Bone-Segmenter/data/test/:/home/deepinfer/data 4Quant/bone-segmenter-cpu --InputVolume /home/deepinfer/data/input.nrrd --OutputLabel /home/deepinfer/data/label_predicted_test.nrrd
 ```
 
+Windows Example
+```
+docker run -t -v "C:\Users\Kevin Mader\Dropbox\4Quant\Projects\Bone-Segmenter":/home/deepinfer/data bone-segmenter-cpu --InputVolume /home/deepinfer/data/CTChest.nrrd --OutputLabel /home/deepinfer/data/label_predicted_test.nrrd
+```
 
 # Results
 

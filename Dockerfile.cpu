@@ -36,13 +36,13 @@ RUN pip install --upgrade pip && \
     conda install -c menpo opencv=2.4.11 && \
     conda clean -yt
 
-RUN mkdir /home/deepinfer/.keras &&
+RUN mkdir /home/deepinfer/.keras && \
     mkdir /home/deepinfer/.keras/models && \
     echo { '"image_dim_ordering"': '"th"', '"epsilon"': 1e-07, '"floatx"': '"float32"', '"backend"': '"theano"'}>/home/deepinfer/.keras/keras.json
 
 
 RUN mkdir -p /home/deepinfer/github && \
-    mkdir -p /home/deepinfer/github/bone-segmenter
+    mkdir -p /home/deepinfer/github/bone-segmenter && \
     mkdir /home/deepinfer/data
 
 WORKDIR "/home/deepinfer/github/bone-segmenter"

@@ -1,3 +1,11 @@
+from __future__ import print_function, absolute_import, division
+# Silence warnings
+import warnings
+warnings.simplefilter(action="ignore", category=FutureWarning)
+warnings.simplefilter(action="ignore", category=UserWarning)
+warnings.simplefilter(action="ignore", category=RuntimeWarning)
+warnings.simplefilter(action='ignore', category=DeprecationWarning)
+
 import getopt
 import os
 import sys
@@ -31,13 +39,13 @@ def main(argv):
         print('usage: fit.py -InputVolume <InputVolumePath> -OutputLabel <OutputLabelPath>')
         sys.exit()
     if os.path.isfile(InputVolume) and os.path.isdir(os.path.dirname(OutputLabel)):
-        print("Making the model.")
+        print("Building the model.")
         model = unet1.model(weights=True, summary=False)
-        cnn = CNNModel(data_streamer=ds, model=model)
+        cnn = CNNModel(model=model, mean_val = 0, max_val = 300)
         rows = 128
         cols = 128
         #
-        print("Starting the segmenter.")
+        print("Resizing images and segmenting")
         sg = Segmenter(cnn)
         sg.segment_bone_volume(InputVolume, OutputLabel, rows, cols)
     else:
