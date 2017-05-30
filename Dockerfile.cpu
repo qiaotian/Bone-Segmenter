@@ -51,9 +51,6 @@ ADD boneseg /home/deepinfer/github/bone-segmenter/boneseg
 ADD fit.py /home/deepinfer/github/bone-segmenter/
 ADD cnn_weights.h5 /home/deepinfer/.keras/models/unet1_weights.h5
 
-
-EXPOSE 8888
-
 WORKDIR "/home/deepinfer"
-# CMD ["/bin/bash"]
+
 ENTRYPOINT ["python","/home/deepinfer/github/bone-segmenter/fit.py"]
