@@ -41,7 +41,7 @@ def main(argv):
     if os.path.isfile(InputVolume) and os.path.isdir(os.path.dirname(OutputLabel)):
         print("Building the model.")
         model = unet1.model(weights=True, summary=False)
-        cnn = CNNModel(model=model, mean_val = 0, max_val = 300)
+        cnn = CNNModel(model=model, mean_val = 127, max_val = 127)
         rows = 128
         cols = 128
         #

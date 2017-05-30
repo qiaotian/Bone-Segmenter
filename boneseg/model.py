@@ -17,7 +17,7 @@ class CNNModel(object):
         print("Preprocessing data.")
         test_slices_arr = self.preprocess(input_test_slices_arr, self.mean_val, self.max_val)
         print("Predicting the labelmap.")
-        test_slices_prediction = self.model.predict(test_slices_arr, verbose=1)
+        test_slices_prediction = self.model.predict(test_slices_arr, verbose=1, batch_size = 4) # reduce memory
         return test_slices_prediction
     
     def train(self, input_train_slices, input_train_segmentations, **kw_args):

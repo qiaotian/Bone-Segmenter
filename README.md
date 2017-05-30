@@ -1,6 +1,12 @@
 # Bone Segmenter
 A modification of the Prostate Segmenter library using our bone segmentation routines with CT images
 
+## Slicer Integration
+
+Using the DeepInfer plugin the image can be called interactively on a image loaded in Slicer. Here we show the results using the Chest CT image from the Sample Data
+
+![Slicer](figures/BoneSegGui.png)
+
 # Docker Image
 
 ## CPU
@@ -12,7 +18,7 @@ docker pull 4Quant/bone-segmenter-cpu
 
 ##### Building the docker
 ```
-docker build -t bone-segmenter-cpu -f Dockerfile.cpu .
+docker build -t 4quant/bone-segmenter-cpu -f Dockerfile.cpu .
 ```
 
 ##### Running the docker
