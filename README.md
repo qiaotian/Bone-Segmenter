@@ -22,7 +22,7 @@ Here is then a 3D rendering of the segmented bones
 
 ##### Downloading the docker image from the hub
 ```
-docker pull 4Quant/bone-segmenter-cpu
+docker pull 4quant/bone-segmenter-cpu
 ```
 
 The image and versions can also be found on the [DockerHub site](https://hub.docker.com/r/4quant/bone-segmenter-cpu/)
@@ -36,7 +36,7 @@ docker build -t 4quant/bone-segmenter-cpu -f Dockerfile.cpu .
 
 ##### Running the docker
 ```
-docker run -t -v [Absolute PATH to the Project Folder]/Bone-Segmenter/data/test/:/home/deepinfer/data 4Quant/bone-segmenter-cpu --InputVolume /home/deepinfer/data/input.nrrd --OutputLabel /home/deepinfer/data/label_predicted_test.nrrd
+sudo docker run -t -v /home/qiao/Workspace/Bone-Segmenter/data/test/:/home/qiao/Workspace/Bone-Segmenter/data/test 4quant/bone-segmenter-cpu --InputVolume /home/qiao/Workspace/Bone-Segmenter/data/test/croped_test.nii --OutputLabel /home/qiao/Workspace/Bone-Segmenter/data/test/result.nii
 ```
 
 ##### Windows Example
